@@ -1,0 +1,13 @@
+<div class="header-container" [class.background-black]="scrollMove">
+  <div class="header-container--navigation">
+    <img src="../../../assets/images/logo.png" alt="logo" />
+    <a [routerLink]="['/']">Home</a>
+    <a [routerLink]="['/surprise-me']">Surprise-me</a>
+  </div>
+  <div class="header-container--search">
+    <div id="input" *ngIf="needSearch">
+      <input type="text" placeholder="Pesquise por nome..." #name />
+      <fa-icon [icon]="searchIcon" (click)="searchAnime(name.value)"></fa-icon>
+    </div>
+  </div>
+</div>

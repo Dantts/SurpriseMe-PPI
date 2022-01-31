@@ -1,0 +1,29 @@
+<div class="list-anime">
+  <h2>{{ title }}</h2>
+  <div class="list-anime--list-area" *ngIf="animes$ | async as animes">
+    <div class="list-anime--handle-left" (click)="onHandleLeft()">
+      <fa-icon [icon]="angleLeftIcon" class="fa-2x"></fa-icon>
+    </div>
+    <div
+      class="list-anime--handle-right"
+      (click)="onHandleRight(animes.length)"
+    >
+      <fa-icon [icon]="angleRightIcon" class="fa-2x"></fa-icon>
+    </div>
+    <div
+      class="list-anime--list"
+      [ngStyle]="{
+        width: animes.length * 220 + 'px',
+        'margin-left': scrollX + 'px'
+      }"
+    >
+      <div class="list-anime--item" *ngFor="let anime of animes">
+        <img
+          [src]="anime.attributes.posterImage.medium"
+          alt="Anime Poster"
+          (click)="viewMoreInformation(anime.id)"
+        />
+      </div>
+    </div>
+  </div>
+</div>

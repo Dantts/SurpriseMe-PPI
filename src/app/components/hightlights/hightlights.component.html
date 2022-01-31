@@ -1,0 +1,29 @@
+<ng-container *ngIf="anime !== undefined">
+  <div
+    class="hightlight"
+    [ngStyle]="
+      anime.attributes.coverImage
+        ? {
+            background: 'url(' + anime.attributes.coverImage.original + ')'
+          }
+        : { background: 'url(' + anime.attributes.posterImage.original + ')' }
+    "
+  >
+    <div class="hightlight--shadow-vertical">
+      <div class="hightlight--shadow-horizontal">
+        <div class="hightlight--info">
+          <h2>{{ anime.attributes.canonicalTitle }}</h2>
+          <div class="hightlight--info-general">
+            <h3>{{ anime.attributes.averageRating }} Points</h3>
+            <h3>{{ anime.attributes.startDate | slice: 0:4 }}</h3>
+          </div>
+          <h4>Age rating: {{ anime.attributes.ageRatingGuide }}</h4>
+          <span>{{ anime.attributes.synopsis | slice: 0:1000 }}...</span>
+          <button (click)="viewMoreInformation(anime.id)">
+            +More informations
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-container>

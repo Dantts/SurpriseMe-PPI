@@ -1,0 +1,35 @@
+<app-header [needSearch]="false"></app-header>
+
+<div class="header-container--search">
+  <div id="input">
+    <input type="text" placeholder="Pesquise por nome..." #name />
+    <fa-icon [icon]="searchIcon" (click)="searchAnime(name.value)"></fa-icon>
+  </div>
+</div>
+
+<div class="list-anime">
+  <div class="list-anime--list-area" *ngIf="animes$ | async as animes">
+    <div class="list-anime--list" *ngIf="animes.length > 0; else noAnime">
+      <div class="list-anime--item" *ngFor="let anime of animes">
+        <img
+          [src]="anime.attributes.posterImage.medium"
+          alt="Anime Poster"
+          (click)="getIdfromListAnimes(anime.id)"
+        />
+      </div>
+    </div>
+  </div>
+</div>
+
+<ng-template #noAnime>
+  <div class="list-anime">
+    <h2>No anime found</h2>
+  </div>
+</ng-template>
+
+<ng-container *ngIf="animeId">
+  <app-modal
+    (closeModal)="getIdfromModal($event)"
+    [animeId]="animeId"
+  ></app-modal>
+</ng-container>

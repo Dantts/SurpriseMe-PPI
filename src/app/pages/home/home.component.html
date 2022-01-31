@@ -1,0 +1,20 @@
+<div (scroll)="scrollDetector($event)">
+  <app-header [scrollMove]="scroll"></app-header>
+  <app-hightlights (idEvent)="getIdfromListAnimes($event)"></app-hightlights>
+  <div class="list-categories-home-component">
+    <app-list-animes-categories
+      *ngFor="let animeCategory of listAnimeCategory"
+      [title]="animeCategory.title"
+      [idCategory]="animeCategory.id"
+      (idEvent)="getIdfromListAnimes($event)"
+    ></app-list-animes-categories>
+  </div>
+  <app-footer></app-footer>
+</div>
+
+<ng-container *ngIf="animeId">
+  <app-modal
+    (closeModal)="getIdfromListAnimes($event)"
+    [animeId]="animeId"
+  ></app-modal>
+</ng-container>
